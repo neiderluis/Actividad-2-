@@ -1,0 +1,92 @@
+using System.Collections.Generic;
+
+namespace SolidShapes.Shapes
+{
+    public interface IHasPerimeter
+    {
+       double perimeter(); 
+    }
+    
+    public interface IHasArea
+    {
+        double Area();
+    }
+
+    public interface IGeometricShape
+        : IHasArea, IHasPerimeter
+    {
+    }
+
+    public class IGeometricShape
+    {
+        public double Sides { get; } = 4;
+        public double Height { get; set; }
+        public double Width { get; set; }
+
+        public class AreaOperations
+        {
+            public double Sum(IEnumerable<IHasArea> Shapes)
+            {
+                double area = 0;
+            foreach (var shape in Shapes)
+                area += shape.Area();
+                return area;
+            }
+        }
+        
+        public class perimeterOperations
+        {
+            public double Sum(IEnumerable<IHasPerimeter> Shapes)
+            {
+                double perimeter = 0;
+            foreach (var shape in Shapes)
+                perimeter += shape.perimeter();
+            return perimeter;
+            }
+        }
+        
+        public class Square : IGeometricShape
+        {
+            public double Sides { get; } = 4;
+            public double SideLength { get; set; }
+
+            public double Area()
+            {
+                return SideLength * SideLength
+            }
+
+            public double perimeter()
+            {
+                return SideLength * 4;
+            }
+        }
+
+        public class GreatCalculator
+        {
+            public double TotalAreas { get; private set; }
+            public double TotalPerimeters { get; private set; }
+
+            public void Calculate(IEnumerable<IGeometricShape> figuras)
+            {
+                var AreaOperations = new AreaOperations();
+                var perimeterOperations = new perimeterOperations();
+                
+                TotalAreas = AreaOperations.Sum(figuras);
+                TotalPerimeters = perimeterOperations.Sum(figuras)
+            }
+        }
+        
+        internal class Program
+        {
+            private static void Main(string[] args)
+            {
+               var calculator = new GreatCalculator();
+               calculator.Calculate();
+               Console.WriteLine($"Area total: {calculator.TotalAreas}\n" + 
+                              $"Perimetro total: {calculator.TotalPerimeters}");
+            Console.ReadKey();  
+            }
+        }       
+    }
+}
+
