@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+
+namespace SolidShapes.Shapes
+{
+    public class IGeometricShape
+    {
+        public double Sides { get; } = 4;
+        public double Height { get; set; }
+        public double Width { get; set; }
+
+        public class AreaOperations
+        {
+            public double Sum(IEnumerable<IGeometricShape> Shapes)
+            {
+                double area = 0;
+            foreach (var shape in Shapes)
+                area += shape.Area();
+                return area;
+            }
+        }
+        
+        public class perimeterOperations
+        {
+            public double Sum(IEnumerable<IGeometricShape> Shapes)
+            {
+                double perimeter = 0;
+            foreach (var shape in Shapes)
+                perimeter += shape.perimeter();
+            return perimeter;
+            }
+        }
+        
+        private static void Main(string[] args)
+        {
+            var rectangulos 0 new[]
+            {
+                new IGeometricShape {Width = 10, Height = 5},
+                new IGeometricShape {Width = 4, Height = 6},
+                new IGeometricShape {Width = 5, Height = 1},
+                new IGeometricShape {Width = 8, Height = 9}
+            };
+
+            var sumaDeAreas = IGeometricShape.SumAreas(Shapes);
+            var sumaDePerimetros = IGeometricShape.SumPerimeters(Shapes);
+
+            Console.WriteLine($"Area total: {sumaDeArease}" + 
+                              $"\nPerimetro total: {sumaDePerimetros}");
+            Console.ReadKey();                  
+        }
+    }
+}
+
