@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+
+namespace SolidShapes.Shapes
+{
+    public class Rectangle
+    {
+        public double Sides { get; } = 4;
+        public double Height { get; set; }
+        public double Width { get; set; }
+
+        public class AreaOperations
+        {
+            public double Sum(IEnumerable<Rectangle> rectangles)
+            {
+                double area = 0;
+            foreach (var Rectangle in rectangles)
+                area += Rectangle.Height * Rectangle.Width;
+                return area;
+            }
+        }
+        
+        public class perimeterOperations
+        {
+            public double Sum(IEnumerable<Rectangle> rectangles)
+            {
+                double perimeter = 0;
+            foreach ( var Rectangle in rectangles)
+                perimeter += 2 * Rectangle.Height + 2 * Rectangle.Width;
+            return perimeter;
+            }
+        }
+        
+        private static void Main(string[] args)
+        {
+            var rectangulos 0 new[]
+            {
+                new Rectangle {Width = 10, Height = 5},
+                new Rectangle {Width = 4, Height = 6},
+                new Rectangle {Width = 5, Height = 1},
+                new Rectangle {Width = 8, Height = 9}
+            };
+
+            var sumaDeAreas = Rectangle.SumAreas(rectangulos);
+            var sumaDePerimetros = Rectangle.SumPerimeters(rectangulos);
+
+            Console.WriteLine($"Area total: {sumaDeArease}" + 
+                              $"\nPerimetro total: {sumaDePerimetros}");
+            Console.ReadKey();                  
+        }
+    }
+}
+
